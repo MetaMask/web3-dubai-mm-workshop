@@ -1,3 +1,5 @@
+import { Hello_factory } from "blockchain";
+
 export default function Web() {
   return (
     <div>
