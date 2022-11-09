@@ -1,0 +1,25 @@
+{
+  "name": "blockchai9n",
+  "main": "typechain/index.ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "compile": "truffle compile && node scripts/generate_types.js",
+    "migrate": "truffle migrate ",
+    "test": "truffle test",
+    "local": "truffle develop --log",
+    "dev": "npm run migrate --development"
+  },
+  "devDependencies": {
+    "@typechain/ethers-v5": "^10.1.1",
+    "@typechain/truffle-v5": "^8.0.2",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
+    "ganache-cli": "^6.12.2",
+    "truffle": "^5.6.4",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^4.8.4"
+  }
+}
