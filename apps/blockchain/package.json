@@ -21,5 +21,9 @@
     "ts-node": "^10.9.1",
     "typechain": "^8.1.1",
     "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "base64-sol": "^1.1.0"
   }
 }

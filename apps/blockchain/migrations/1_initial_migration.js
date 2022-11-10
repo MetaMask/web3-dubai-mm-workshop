@@ -1,5 +1,5 @@
-const Hello = artifacts.require("./Hello.sol");
+const ethTicket = artifacts.require("./ETHTickets.sol");
 
 module.exports = function (deployer) {
-  deployer.deploy(Hello);
+  deployer.deploy(ethTicket);
 };
