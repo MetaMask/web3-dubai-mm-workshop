@@ -3,6 +3,9 @@ const withTM = require("next-transpile-modules")(["blockchain"]); // pass the mo
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = withTM(nextConfig);
