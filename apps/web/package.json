@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@metamask/sdk": "^0.0.1-beta.5",
     "blockchain": "*",
+    "ethers": "^5.7.2",
     "next": "13.0.0",
     "next-transpile-modules": "^10.0.0",
     "react": "^18.2.0",
