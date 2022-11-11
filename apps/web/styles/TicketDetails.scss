@@ -1,0 +1,45 @@
+div.ticketDetails {
+  .nftCard {
+    width: 300px;
+    height: 390px;
+    border-radius: 12px;
+    border: 1px solid #cfcfcf;
+    margin: 8px;
+    /* border: 1px solid red; */
+  }
+  .NftCollName {
+    padding: 8px;
+  }
+  .innerCont {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    color: #222;
+    button {
+      background-color: #FFF;
+      color: inherit;
+    }
+  }
+  .nftName {
+    font-weight: 600;
+  }
+  .styledAlert {
+    padding: 1em;
+    height: 60px;
+    width: 800px;
+    word-break: break-word;
+    margin: 1rem 1rem 1rem 0.5rem;
+    border: 1px solid #E2761B;
+    strong {
+      color: #E2761B;
+    }
+  }
+  .alertMessage {
+    margin-bottom: 1em;
+    font-weight: 400;
+    font-size: 1em;
+    button {
+      user-select: none;
+    }
+  }
+}

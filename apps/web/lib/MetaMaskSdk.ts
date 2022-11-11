@@ -8,3 +8,6 @@ export const instantiateSdk = () => {
 
   new MetaMaskSDK();
 };
+
+// Should we be adding a useWallet or use MetaMask hook here 
+// which could keep track of the contract and wallet information using context and reducer?
