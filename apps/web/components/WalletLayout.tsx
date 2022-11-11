@@ -1,6 +1,7 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useListen } from "../hooks/useListen";
 import { useMetamask } from "../hooks/useMetamask";
+import { instantiateSdk } from "../lib/MetaMaskSdk";
 
 export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const { dispatch } = useMetamask();
@@ -28,6 +29,7 @@ export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
         : // backup if local storage is empty
           { wallet: null, balance: null };
 
+      instantiateSdk();
       dispatch({ type: "pageLoaded", isMetamaskInstalled, wallet, balance });
     }
   }, []);

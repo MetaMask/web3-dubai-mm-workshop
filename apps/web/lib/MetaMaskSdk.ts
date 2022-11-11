@@ -1,12 +1,10 @@
 import MetaMaskSDK from "@metamask/sdk";
 import { ethers } from "ethers";
 
-export const getProvider = () => {
+export const instantiateSdk = () => {
   if (typeof window === undefined) {
     return null;
   }
 
-  const MMSDK = new MetaMaskSDK();
-
-  return MMSDK.getProvider();
+  new MetaMaskSDK();
 };
