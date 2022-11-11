@@ -1,3 +1,3 @@
 export const config = {
-  contractAddress: "0xBa5b78bd74bF4f2D2468EA52523c6D055095D752",
+  contractAddress: "0xE95D522B240A385E88F5fEb4e2126e0cF6fCdD3C",
 };

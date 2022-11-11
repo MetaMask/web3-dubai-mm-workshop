@@ -1,97 +1,93 @@
-import { useState, useEffect } from 'react'
-import { getProvider } from "../../lib/MetaMaskSdk"
-import { ETHTickets__factory } from "blockchain"
-import { config } from "../../lib/config"
-import Image from 'next/image'
-import styled from 'styled-components'
-import { ethers } from "ethers"
-import { info } from 'console'
+import { useState, useEffect } from "react";
+import { ETHTickets__factory } from "blockchain";
+import { config } from "../../lib/config";
+import Image from "next/image";
+import styled from "styled-components";
+import { ethers } from "ethers";
+import { useMetamask } from "../../hooks/useMetamask";
 
 const Wrap = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 166px);
   grid-template-rows: repeat(150px);
   /* border: 1px solid blue; */
-`
+`;
 const SvgItem = styled.div`
   width: 150px;
   padding: 8px;
   cursor: pointer;
   &:hover img {
-    opacity:0.5
+    opacity: 0.5;
   }
   /* border: 1px solid red; */
-`
+`;
 
 const TicketsOwned = () => {
-  const address = '0x568820334111ba2a37611F9Ad70BD074295D44C5'
-  // const { user, nfTickets, provider } = useContext(ViewContext)
-  // const { address } = user
-  const [provider, setProvider] = useState({})
-  const [ownedTickets, setOwnedTickets] = useState([])
-  const [ticketCollection, setTicketCollection] = useState([])
-
-  const contract = ETHTickets__factory.connect(
-    config.contractAddress,
-    signer
-  )
-
-  const getOwnedTickets = async () => {
-    let mintedTickets = await contract.walletOfOwner(address)
-    setOwnedTickets(mintedTickets)
-  }
+  const [ticketCollection, setTicketCollection] = useState([]);
+  const {
+    state: { wallet: address },
+  } = useMetamask();
 
   useEffect(() => {
-    setProvider(new ethers.providers.Web3Provider(window.ethereum))
-  }, []);
+    if (typeof window !== "undefined" && address !== null) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
 
-  useEffect(() => {
-    if (provider) {
-      provider.on('block', getOwnedTickets)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [provider])
-  
-  useEffect(() => {
-    if (provider) {
-      let ticketsRetrieved = []
-      if(ownedTickets.length > 0) {
-        const promises = ownedTickets.map(async(t) => {
-          const currentTokenId = t.toString()
-          let currentTicket = await nfTickets.tokenURI(currentTokenId)
-          let base64ToString = window.atob(currentTicket.replace('data:application/json;base64,', ''))
-          base64ToString = JSON.parse(base64ToString)
-  
+      const factory = new ETHTickets__factory(signer);
+      const nftTickets = factory.attach(config.contractAddress);
+
+      nftTickets.MAX_SUPPLY().then(console.log);
+
+      const ticketsRetrieved = [];
+
+      nftTickets.walletOfOwner(address).then((ownedTickets) => {
+        const promises = ownedTickets.map(async (t) => {
+          const currentTokenId = t.toString();
+          let currentTicket = await nftTickets.tokenURI(currentTokenId);
+          let base64ToString = window.atob(
+            currentTicket.replace("data:application/json;base64,", "")
+          );
+          base64ToString = JSON.parse(base64ToString);
+
           ticketsRetrieved.push({
             tokenId: currentTokenId,
             svgImage: base64ToString.image,
-            ticketType: base64ToString.attributes.find((x) => x.trait_type === "Ticket Type"),
-          })
-        })
-        Promise.all(promises).then(() => setTicketCollection(ticketsRetrieved))
-      }
+            ticketType: base64ToString.attributes.find(
+              (x) => x.trait_type === "Ticket Type"
+            ),
+          });
+        });
+        Promise.all(promises).then(() => setTicketCollection(ticketsRetrieved));
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ownedTickets])
+  }, [address]);
 
-  let listOfTickets = ticketCollection.map(ticket =>
+  let listOfTickets = ticketCollection.map((ticket) => (
     <SvgItem key={`ticket${ticket.tokenId}`}>
-      <Image src={ticket.svgImage} width={150} alt={`Ticket# ${ticket.tokenId}`} />
+      <Image
+        src={ticket.svgImage}
+        width={300}
+        height={300}
+        alt={`Ticket# ${ticket.tokenId}`}
+      />
     </SvgItem>
-  )
+  ));
 
   return (
     <>
-      <hr height="1" />
-      { ownedTickets.length > 0
-        ? <>
-            <div>You have {ownedTickets.length} ticket{ownedTickets.length > 1 ? 's' : ''}, click to view on OpenSea!</div>
-            <Wrap>{listOfTickets}</Wrap>
-          </>
-        : null
-      }
+      {/* <hr height="1" />
+      {ownedTickets.length > 0 ? (
+        <>
+          <div>
+            You have {ownedTickets.length} ticket
+            {ownedTickets.length > 1 ? "s" : ""}, click to view on OpenSea!
+          </div>
+          <Wrap>{listOfTickets}</Wrap>
+        </>
+      ) : null} */}
+      <Wrap>{listOfTickets}</Wrap>
     </>
-  )
-}
+  );
+};
 
-export default TicketsOwned
+export default TicketsOwned;
