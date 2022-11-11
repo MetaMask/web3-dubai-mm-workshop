@@ -127,27 +127,28 @@ contract ETHTickets is ERC721Enumerable, Ownable {
         '<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;user-select: none;">',
           renderNftSvgBottomById(id),
           renderNftSvgTopById(id),
-          '<style>.s1{font-family:"BalooDa2-ExtraBold";} .s4{font-family:"BalooDa2-Regular";} .s3{font-size:108px;} .s5{fill:#FFF;} .s2{fill:#FF9200;} .s6{fill:#3C3C3C;} .s7{fill:#532775;} .s8{fill:rgb(215,43,123);}</style>',
+          '<style>.s1{font-family:"Arial";} .s2a{fill:#000;} .s2b{fill:#FFF;} .s3{font-size:16px;} .s4{font-size:12px;} .s5{font-size:8px;} .s6t{fill:#B276FF;} .s7t{fill:#4EABE5;} .s6b{fill:#19003F;} .s7b{fill:#092A3F;} .s8{fill:rgb(215,43,123);} .s9{font-size:7px;}</style>',
         '</svg>'
       ))
     )));
   }
 
   function renderNftSvgTopById(uint256 id) internal view returns (string memory) {
+    string memory nftOwner = Strings.toHexString(uint160(_owner), 20);
     return string(abi.encodePacked(
-      '<g transform="matrix(1,0,0,1,0,0.177859)"><path class="',(vipTicketHolders[id] ? "s6" : "s7"), '" d="M295,199.822L5,199.822L5,284.988C5,290.416 9.406,294.822 14.834,294.822L285.166,294.822C290.594,294.822 295,290.416 295,284.988L295,199.822Z" style="fill:rgb(76,76,76);"/></g>',
-      '<g id="eventName" transform="matrix(1.6679,0,0,1.6679,-21.8104,-54.7608)"><text x="24.056px" y="53.979px" style="font-size:12.791px;">ETH Atlantis</text></g>',
-      '<g id="eventDate" transform="matrix(1.6679,0,0,1.6679,-20.606,-38.5316)"><text x="24.056px" y="53.979px" class="s4 s5">2022, Nov 18 / ',(vipTicketHolders[id] ? "VIP" : "GA"),'</text></g>',
-      '<g id="cancelled" transform="matrix(1.6679,0,0,1.6679,-20.6542,-25.266)"><text x="24.056px" y="53.979px" class="s4 s8" style="font-size:6.395px;">CANCELLED</text></g>',
-      '<g id="eventMessage" transform="matrix(1.6679,0,0,1.6679,-20.8417,86.6168)"><text x="24.056px" y="53.979px" style="font-size:9.593px;">See you in x Days!</text></g>'
+      '<g transform="matrix(0.966539,0,0,0.966539,4.93126,4.90586)"><path class="',(vipTicketHolders[id] ? "s6t" : "s7t"), '" d="M0.071,201.848L300.111,201.848L300.111,10.272C300.111,4.656 295.552,0.097 289.936,0.097L10.245,0.097C4.63,0.097 0.071,4.656 0.071,10.272L0.071,201.848Z" /></g>',
+      '<g id="eventName" transform="matrix(1.6679,0,0,1.6679,-25,-55)"><text x="24.056px" y="53.979px" class="s1 s2 s3">ETH Atlantis</text></g>',
+      '<g id="eventDate" transform="matrix(1.6679,0,0,1.6679,-25,-30)"><text x="24.056px" y="53.979px" class="s1 s2 s4">2022, Nov 18 / ',(vipTicketHolders[id] ? "VIP" : "GA"),'</text></g>',
+      '<g id="walletAddress" transform="matrix(1.6679,0,0,1.6679,-25,85)"><text x="24.056px" y="53.979px" class="s1 s9">',nftOwner,'</text></g>'
     ));
   }
+
   function renderNftSvgBottomById(uint256 id) internal view returns (string memory) {
-    string memory ticketType = vipTicketHolders[id] ? "VIP" : "General Admission";
+    string memory ticketType = vipTicketHolders[id] ? "VIP" : "GA";
     return string(abi.encodePacked(
-      '<g transform="matrix(0.966539,0,0,0.966539,4.93126,4.90586)"><path class="',(vipTicketHolders[id] ? "s6" : "s7"), '" d="M0.071,201.848L300.111,201.848L300.111,10.272C300.111,4.656 295.552,0.097 289.936,0.097L10.245,0.097C4.63,0.097 0.071,4.656 0.071,10.272L0.071,201.848Z" style="fill:rgb(194,194,194);"/></g>',
-      '<g id="ticketNumber" transform="matrix(1.6679,0,0,1.6679,51.9249,163.089)"><text x="25.898px" y="53.979px" class="s1 s3 s5">#',id.toString(),'</text></g>',
-      '<g id="ticketType" transform="matrix(1.6679,0,0,1.6679,51.5802,191.5)"><text x="5.566px" y="53.979px" class="s1 s3 s2">',ticketType,'</text></g>'
+      '<g transform="matrix(1,0,0,1,0,0.177859)"><path class="',(vipTicketHolders[id] ? "s6b" : "s7b"), '" d="M295,199.822L5,199.822L5,284.988C5,290.416 9.406,294.822 14.834,294.822L285.166,294.822C290.594,294.822 295,290.416 295,284.988L295,199.822Z" /></g>',
+      '<g id="ticketNumber" transform="matrix(1.6679,0,0,1.6679,50,160)"><text x="20%" y="14%" style="dominant-baseline:central; text-anchor:middle;" class="s1 s2b s3">#',id.toString(),'</text></g>',
+      '<g id="ticketType" transform="matrix(1.6679,0,0,1.6679,50,200)"><text x="20%" y="14%" style="dominant-baseline:central; text-anchor:middle;" class="s1 s2b s3">',ticketType,'</text></g>'
     ));
   }
 

@@ -15,10 +15,6 @@ const Wrap = styled.div`
 const SvgItem = styled.div`
   width: 150px;
   padding: 8px;
-  cursor: pointer;
-  &:hover img {
-    opacity: 0.5;
-  }
   /* border: 1px solid red; */
 `;
 
@@ -35,8 +31,6 @@ const TicketsOwned = () => {
 
       const factory = new ETHTickets__factory(signer);
       const nftTickets = factory.attach(config.contractAddress);
-
-      nftTickets.MAX_SUPPLY().then(console.log);
 
       const ticketsRetrieved = [];
 
