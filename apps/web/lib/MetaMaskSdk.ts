@@ -8,5 +8,5 @@ export const getProvider = () => {
 
   const MMSDK = new MetaMaskSDK();
 
-  return MMSDK.getProvider() as ethers.providers.ExternalProvider;
+  return MMSDK.getProvider();
 };
