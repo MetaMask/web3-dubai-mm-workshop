@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from 'next/head';
 import { ethers } from "ethers";
 
 import Tickets from "../components/tickets/Tickets";
@@ -33,6 +34,10 @@ const Mint: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>ETH Atlantis 2022</title>
+        <meta property="og:title" content="The largest underwater Ethereum event in history" key="title" />
+      </Head>
       <WalleButton />
       <Tickets tickets={tickets} />
       <TicketsOwned />
