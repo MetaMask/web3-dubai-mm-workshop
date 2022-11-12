@@ -41,7 +41,6 @@ contract ETHTickets is ERC721Enumerable, Ownable {
   */
   function walletOfOwner(address _wallet) public view returns (uint256[] memory) {
     uint256 tokenCount = balanceOf(_wallet);
-
     uint256[] memory tokensId = new uint256[](tokenCount);
     for (uint256 i; i < tokenCount; i++) {
       tokensId[i] = tokenOfOwnerByIndex(_wallet, i);
@@ -51,10 +50,9 @@ contract ETHTickets is ERC721Enumerable, Ownable {
 
   function contractURI() public pure returns (string memory) {
     string memory image = Base64.encode(bytes(generateCollectionSvg()));
-
     bytes memory collectionJsonString = bytes(abi.encodePacked(
-      '{"name": "ETHTickets",',
-      '"description": "ETHTickets is a premier Ethereum Blockchain event. Join friends from all over the world. Your NFT purchase is your ticket to the event!",', 
+      '{"name": "ETH Atlantis",',
+      '"description": "ETH Atlantis is a premier Ethereum Blockchain event. Join friends from all over the world at the bottom of the ocean. Sink or swim!",', 
       '"image": "data:image/svg+xml;base64,',image,'",'
       '"external_link": "https://metamask.io"}'
     ));
@@ -132,7 +130,6 @@ contract ETHTickets is ERC721Enumerable, Ownable {
       ))
     )));
   }
-
   function renderNftSvgTopById(uint256 id) internal view returns (string memory) {
     string memory nftOwner = Strings.toHexString(uint160(_owner), 20);
     return string(abi.encodePacked(
@@ -142,7 +139,6 @@ contract ETHTickets is ERC721Enumerable, Ownable {
       '<g id="walletAddress" transform="matrix(1.6679,0,0,1.6679,-25,85)"><text x="24.056px" y="53.979px" class="s1 s9">',nftOwner,'</text></g>'
     ));
   }
-
   function renderNftSvgBottomById(uint256 id) internal view returns (string memory) {
     string memory ticketType = vipTicketHolders[id] ? "VIP" : "GA";
     return string(abi.encodePacked(
