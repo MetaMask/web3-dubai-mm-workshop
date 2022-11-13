@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { useListen } from "../hooks/useListen";
-import { useMetamask } from "../hooks/useMetamask";
+import { useMetaMask } from "../hooks/useMetaMask";
 
 export default function WalleButton() {
   const {
     dispatch,
-    state: { status, isMetamaskInstalled, wallet, balance },
-  } = useMetamask();
+    state: { status, isMetaMaskInstalled, wallet, balance },
+  } = useMetaMask();
   const listen = useListen();
 
-  const showInstallMetamask =
-    status !== "pageNotLoaded" && !isMetamaskInstalled;
+  const showInstallMetaMask =
+    status !== "pageNotLoaded" && !isMetaMaskInstalled;
   const showConnectButton =
-    status !== "pageNotLoaded" && isMetamaskInstalled && !wallet;
+    status !== "pageNotLoaded" && isMetaMaskInstalled && !wallet;
 
   const isConnected = status !== "pageNotLoaded" && typeof wallet === "string";
 
@@ -70,9 +70,9 @@ export default function WalleButton() {
           </button>
         )}
 
-        {showInstallMetamask && (
+        {showInstallMetaMask && (
           <Link href="https://metamask.io/" target="_blank">
-            Install Metamask
+            Install MetaMask
           </Link>
         )}
 

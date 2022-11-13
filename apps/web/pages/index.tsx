@@ -38,6 +38,7 @@ const Mint: NextPage = () => {
         <title>ETH Atlantis 2022</title>
         <meta property="og:title" content="The largest underwater Ethereum event in history" key="title" />
       </Head>
+
       <WalleButton />
       <Tickets tickets={tickets} />
       <TicketsOwned />

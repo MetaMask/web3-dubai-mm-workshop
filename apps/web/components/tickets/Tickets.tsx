@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMetamask } from "../../hooks/useMetamask";
+import { useMetaMask } from "../../hooks/useMetaMask";
 import { ETHTickets__factory } from "blockchain";
 import { ethers } from "ethers";
 import { config } from "../../lib/config";
@@ -25,7 +25,7 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
 }) => {
   const {
     state: { wallet },
-  } = useMetamask();
+  } = useMetaMask();
   const { reload } = useRouter();
   const [isMinting, setIsMinting] = useState(false);
   const [error, setError] = useState(false);

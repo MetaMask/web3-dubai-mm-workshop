@@ -1,14 +1,14 @@
 import type { AppProps } from "next/app";
 import { WalletLayout } from "../components/WalletLayout";
-import { MetamaskProvider } from "../hooks/useMetamask";
+import { MetaMaskProvider } from "../hooks/useMetaMask";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MetamaskProvider>
+    <MetaMaskProvider>
       <WalletLayout>
         <Component {...pageProps} />
       </WalletLayout>
-    </MetamaskProvider>
+    </MetaMaskProvider>
   );
 }
 

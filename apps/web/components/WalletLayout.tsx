@@ -1,10 +1,10 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useListen } from "../hooks/useListen";
-import { useMetamask } from "../hooks/useMetamask";
+import { useMetaMask } from "../hooks/useMetaMask";
 import { instantiateSdk } from "../lib/MetaMaskSdk";
 
 export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  const { dispatch } = useMetamask();
+  const { dispatch } = useMetaMask();
   const listen = useListen();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
       const ethereumProviderInjected = typeof window.ethereum !== "undefined";
       // this could be other wallets so we can verify if we are dealing with metamask
       // using the boolean constructor to be explecit and not let this be used as a falsy value (optional)
-      const isMetamaskInstalled =
+      const isMetaMaskInstalled =
         ethereumProviderInjected && Boolean(window.ethereum.isMetaMask);
 
       const local = window.localStorage.getItem("metamaskState");
@@ -30,7 +30,7 @@ export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
           { wallet: null, balance: null };
 
       instantiateSdk();
-      dispatch({ type: "pageLoaded", isMetamaskInstalled, wallet, balance });
+      dispatch({ type: "pageLoaded", isMetaMaskInstalled, wallet, balance });
     }
   }, []);
 

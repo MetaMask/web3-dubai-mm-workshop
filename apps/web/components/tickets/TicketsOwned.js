@@ -4,13 +4,13 @@ import Image from "next/image";
 
 import { ETHTickets__factory } from "blockchain";
 import { config } from "../../lib/config";
-import { useMetamask } from "../../hooks/useMetamask";
+import { useMetaMask } from "../../hooks/useMetaMask";
 
-import { Grid, SvgItem } from "./ticketsOwnedStyle";
+import { Grid, SvgItem } from "./styledComponents/ticketsOwned";
 
 const TicketsOwned = () => {
   const [ticketCollection, setTicketCollection] = useState([]);
-  const { state: { wallet: address }, } = useMetamask();
+  const { state: { wallet: address }, } = useMetaMask();
 
   useEffect(() => {
     if (typeof window !== "undefined" && address !== null) {
