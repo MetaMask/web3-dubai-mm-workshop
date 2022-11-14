@@ -5,6 +5,11 @@ import { ethers } from "ethers";
 import { config } from "../../lib/config";
 import { useRouter } from "next/router";
 
+import { SiEthereum } from 'react-icons/si';
+
+import { Button, FlexContainer, FlexItem, } from "../styledComponents/general";
+import { TicketsView, TicketType, TicketTypeText } from "../styledComponents/tickets";
+
 interface Ticket {
   type: string;
   event: string;
@@ -31,7 +36,6 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const { user, nfTickets, chainId } = useContext(ViewContext)
   const mintTicket = async () => {
     setIsMinting(true);
 
@@ -60,24 +64,26 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
       .finally(reload);
   };
   return (
-    <div className="nft-card">
-      <div>{event}</div>
-      <div>{description}</div>
-      <button onClick={mintTicket}>Mint</button>
-    </div>
+    <FlexItem>
+      <TicketType>
+        <TicketTypeText>{event}</TicketTypeText>
+        <p>{description}</p>
+        <Button onClick={mintTicket}><SiEthereum /> Mint Ticket</Button>
+      </TicketType>
+    </FlexItem>
   );
 };
 
 const Tickets = ({ tickets }: TicketsProps) => {
   return (
-    <>
-      <h1>Tickets Available</h1>
-      <div className="nft-grid">
+    <TicketsView>
+      <h1>Ticket Types</h1>
+      <FlexContainer gap={1}>
         {tickets.map((ticket) => (
           <TicketCategoryDetail key={ticket.type} {...ticket} />
         ))}
-      </div>
-    </>
+      </FlexContainer>
+    </TicketsView>
   );
 };
 

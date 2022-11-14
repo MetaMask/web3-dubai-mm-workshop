@@ -2,7 +2,10 @@ import Link from "next/link";
 import { useListen } from "../hooks/useListen";
 import { useMetaMask } from "../hooks/useMetaMask";
 
-export default function WalleButton() {
+import { Button } from "./styledComponents/general";
+import { WalletView } from "./styledComponents/wallet";
+
+export default function Wallet() {
   const {
     dispatch,
     state: { status, isMetaMaskInstalled, wallet, balance },
@@ -39,45 +42,33 @@ export default function WalleButton() {
   };
 
   return (
-    <div>
-      <div>
-        {wallet && balance && (
-          <div>
-            <div>
-              <div>
-                <div>
-                  <div>
-                    <h3>
-                      Address: <span>{wallet}</span>
-                    </h3>
-                    <p>
-                      Balance:{" "}
-                      <span>
-                        {(parseInt(balance) / 1000000000000000000).toFixed(4)}{" "}
-                        ETH
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+    <WalletView>
+      {wallet && balance && (
+        <div>
+          <h3>Address: <span>{wallet}</span></h3>
+          <p>
+            Balance:{" "}
+            <span>
+              {(parseInt(balance) / 1000000000000000000).toFixed(4)}{" "}
+              ETH
+            </span>
+          </p>
+        </div>
+      )}
 
-        {showConnectButton && (
-          <button onClick={handleConnect}>
-            {status === "loading" ? "loading..." : "Connect Wallet"}
-          </button>
-        )}
+      {showConnectButton && (
+        <Button onClick={handleConnect}>
+          {status === "loading" ? "loading..." : "Connect Wallet"}
+        </Button>
+      )}
 
-        {showInstallMetaMask && (
-          <Link href="https://metamask.io/" target="_blank">
-            Install MetaMask
-          </Link>
-        )}
+      {showInstallMetaMask && (
+        <Link href="https://metamask.io/" target="_blank">
+          Install MetaMask
+        </Link>
+      )}
 
-        {isConnected && <button onClick={handleDisconnect}>Disconnect</button>}
-      </div>
-    </div>
+      {isConnected && <Button onClick={handleDisconnect}>Disconnect</Button>}
+    </WalletView>
   );
 }

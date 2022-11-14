@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import Tickets from "../components/tickets/Tickets";
 import TicketsOwned from "../components/tickets/TicketsOwned";
 
-import WalleButton from "../components/WalletButton";
+import Wallet from "../components/WalletButton";
 
 const Mint: NextPage = () => {
   // Get ETH as small number ("0.01" => "10000000000000000")
@@ -33,16 +33,16 @@ const Mint: NextPage = () => {
   ];
 
   return (
-    <>
+    <div className="mint-tickets">
       <Head>
         <title>ETH Atlantis 2022</title>
         <meta property="og:title" content="The largest underwater Ethereum event in history" key="title" />
       </Head>
 
-      <WalleButton />
+      <Wallet />
       <Tickets tickets={tickets} />
       <TicketsOwned />
-    </>
+    </div>
   );
 };
 

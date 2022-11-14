@@ -6,7 +6,7 @@ import { ETHTickets__factory } from "blockchain";
 import { config } from "../../lib/config";
 import { useMetaMask } from "../../hooks/useMetaMask";
 
-import { Grid, SvgItem } from "./styledComponents/ticketsOwned";
+import { Grid, SvgItem } from "../styledComponents/ticketsOwned";
 
 const TicketsOwned = () => {
   const [ticketCollection, setTicketCollection] = useState([]);

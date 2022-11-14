@@ -125,7 +125,7 @@ contract ETHTickets is ERC721Enumerable, Ownable {
         '<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;user-select: none;">',
           renderNftSvgBottomById(id),
           renderNftSvgTopById(id),
-          '<style>.s1{font-family:"Arial";} .s2a{fill:#000;} .s2b{fill:#FFF;} .s3{font-size:24px;} .s4{font-size:16px;} .s5{font-size:14px;} .s6{fill:#19003F;} .s7{fill:#001C2E;} .s8{fill:rgb(215,43,123);} .s9{font-size:7px;}</style>',
+          '<style>.s1{font-family:"Arial";} .s2a{fill:#000;} .s2b{fill:#FFF;} .s3{font-size:24px;} .s4{font-size:16px;} .s5{font-size:14px;} .s6{fill:#19003F;} .s7{fill:#001C2E;}</style>',
         '</svg>'
       ))
     )));

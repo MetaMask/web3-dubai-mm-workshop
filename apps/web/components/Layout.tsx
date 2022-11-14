@@ -3,7 +3,7 @@ import { useListen } from "../hooks/useListen";
 import { useMetaMask } from "../hooks/useMetaMask";
 import { instantiateSdk } from "../lib/MetaMaskSdk";
 
-export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
+export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   const { dispatch } = useMetaMask();
   const listen = useListen();
 
@@ -34,5 +34,9 @@ export const WalletLayout: React.FC<PropsWithChildren> = ({ children }) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return (
+    <div className="app-container">
+      {children}
+    </div>
+  );
 };
