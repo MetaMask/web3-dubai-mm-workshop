@@ -13,18 +13,24 @@ export const FlexItem = styled.div`
   width: ${props => props.widthPercent || 50}%;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   border-radius: 4px;
+  border: none;
   background-color: #103164;
   color: #FFF;
   font-size: ${props => props.textSize || 16}px;
   text-transform: uppercase;
   padding: 1em 0.75em;
-  cursor: pointer;
   display: inline-block;
   margin: 0 1em 0 0;
   cursor: pointer;
+  cursor: hand;
   &:hover {
-    background-color: #295496;
+    background-color: #244982;
+  }
+  &:disabled {
+    background-color: #244982;
+    color: #7697C8;
+    cursor: not-allowed;
   }
 `

@@ -68,7 +68,7 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
       <TicketType>
         <TicketTypeText>{event}</TicketTypeText>
         <p>{description}</p>
-        <Button onClick={mintTicket}><SiEthereum /> Mint Ticket</Button>
+        <Button onClick={mintTicket} disabled={isMinting}><SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket</Button>
       </TicketType>
     </FlexItem>
   );

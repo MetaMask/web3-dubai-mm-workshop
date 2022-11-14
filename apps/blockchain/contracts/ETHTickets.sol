@@ -125,7 +125,7 @@ contract ETHTickets is ERC721Enumerable, Ownable {
         '<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;user-select: none;">',
           renderNftSvgBottomById(id),
           renderNftSvgTopById(id),
-          '<style>.s1{font-family:"Arial";} .s2a{fill:#000;} .s2b{fill:#FFF;} .s3{font-size:24px;} .s4{font-size:16px;} .s5{font-size:14px;} .s6{fill:#19003F;} .s7{fill:#001C2E;}</style>',
+          '<style>.s1{font-family:"Arial";} .s2a{fill:#000;} .s2b{fill:#FFF;} .s3{font-size:24px;} .s4{font-size:16px;} .s5{font-size:14px;} .s6{fill:#19003F;} .s7{fill:#001C2E;} .s8{font-size:7px;}</style>',
         '</svg>'
       ))
     )));
@@ -137,7 +137,7 @@ contract ETHTickets is ERC721Enumerable, Ownable {
       '<g transform="matrix(0.966539,0,0,0.966539,4.93126,4.90586)"><path style="fill:url(#',(vipTicketHolders[id] ? "vpBg" : "gaBg"),');" d="M0.071,201.848L300.111,201.848L300.111,10.272C300.111,4.656 295.552,0.097 289.936,0.097L10.245,0.097C4.63,0.097 0.071,4.656 0.071,10.272L0.071,201.848Z"/></g>',
       '<g transform="matrix(1.6679,0,0,1.6679,-25,-40)"><text x="24px" y="54px" class="s1 s2b s3">ETH Atlantis</text></g>',
       '<g transform="matrix(1.6679,0,0,1.6679,-25,-10)"><text x="24px" y="54px" class="s1 s2b s5">2022, Nov 18 / ',(vipTicketHolders[id] ? "VIP" : "GA"),'</text></g>',
-      '<g transform="matrix(1.6679,0,0,1.6679,-25,85)"><text x="24px" y="54px" class="s1 s2b s9">',nftOwner,'</text></g>'
+      '<g transform="matrix(1.6679,0,0,1.6679,-25,85)"><text x="24px" y="54px" class="s1 s2b s8">',nftOwner,'</text></g>'
     ));
   }
   function renderNftSvgBottomById(uint256 id) internal view returns (string memory) {

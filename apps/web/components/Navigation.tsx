@@ -3,8 +3,7 @@ import { useListen } from "../hooks/useListen";
 import { useMetaMask } from "../hooks/useMetaMask";
 
 import { Button, FlexContainer, FlexItem, } from "./styledComponents/general";
-import { WalletView } from "./styledComponents/wallet";
-import { Balance, RightNav } from "./styledComponents/navigation";
+import { NavigationView, Balance, RightNav, Logo } from "./styledComponents/navigation";
 import { SiEthereum } from 'react-icons/si';
 
 export default function Navigation() {
@@ -48,41 +47,43 @@ export default function Navigation() {
   }
 
   return (
-    <WalletView>
+    <NavigationView>
       <FlexContainer>
         <FlexItem widthPercent={50}>
-          <SiEthereum /> ETH Atlantis
+          <Logo>
+            <SiEthereum /> ETH Atlantis
+          </Logo>
         </FlexItem>
         <FlexItem widthPercent={50}>
-          {wallet && balance && (
-            <RightNav widthPixel={288}>
-              {showConnectButton && (
-                <Button textSize={10} onClick={handleConnect}>
-                  {status === "loading" ? "loading..." : "Connect Wallet"}
-                </Button>
-              )}
-
-              {showInstallMetaMask && (
-                <Link href="https://metamask.io/" target="_blank">
-                  Install MetaMask
-                </Link>
-              )}
-
-              {isConnected && <Button textSize={10} onClick={handleDisconnect}>Disconnect</Button>}
-              <a 
-                className="text_link tooltip-right" 
-                href={`https://etherscan.io/address/${wallet}`} target="_blank"
-                data-tooltip="Open in Etherscan"
-              >
-                {formatAddress(wallet)}
-              </a>
-              <Balance>
-                {(parseInt(balance) / 1000000000000000000).toFixed(2)}{" "}ETH
-              </Balance>
-            </RightNav>
-          )}
+          <RightNav widthPixel={300}>
+            {showConnectButton && (
+              <Button textSize={10} onClick={handleConnect}>
+                {status === "loading" ? "loading..." : "Connect Wallet"}
+              </Button>
+            )}
+            {showInstallMetaMask && (
+              <Link href="https://metamask.io/" target="_blank">
+                Install MetaMask
+              </Link>
+            )}
+            {wallet && balance && (
+              <>
+                {isConnected && <Button textSize={10} onClick={handleDisconnect}>Disconnect</Button>}
+                <a
+                  className="text_link tooltip-bottom"
+                  href={`https://etherscan.io/address/${wallet}`} target="_blank"
+                  data-tooltip="Open in Etherscan"
+                >
+                  {formatAddress(wallet)}
+                </a>
+                <Balance>
+                  {(parseInt(balance) / 1000000000000000000).toFixed(2)}{" "}ETH
+                </Balance>
+              </>
+            )}
+          </RightNav>
         </FlexItem>
       </FlexContainer>
-    </WalletView>
+    </NavigationView>
   );
 }
