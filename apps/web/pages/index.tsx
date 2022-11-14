@@ -33,7 +33,7 @@ const Mint: NextPage = () => {
   ];
 
   return (
-    <div className="mint-tickets">
+    <>
       <Head>
         <title>ETH Atlantis 2022</title>
         <meta property="og:title" content="The largest underwater Ethereum event in history" key="title" />
@@ -42,7 +42,7 @@ const Mint: NextPage = () => {
       <Navigation />
       <Tickets tickets={tickets} />
       <TicketsOwned />
-    </div>
+    </>
   );
 };
 
