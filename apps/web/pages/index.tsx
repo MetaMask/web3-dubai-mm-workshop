@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import Tickets from "../components/tickets/Tickets";
 import TicketsOwned from "../components/tickets/TicketsOwned";
 
-import Wallet from "../components/WalletButton";
+import Navigation from "../components/Navigation";
 
 const Mint: NextPage = () => {
   // Get ETH as small number ("0.01" => "10000000000000000")
@@ -39,7 +39,7 @@ const Mint: NextPage = () => {
         <meta property="og:title" content="The largest underwater Ethereum event in history" key="title" />
       </Head>
 
-      <Wallet />
+      <Navigation />
       <Tickets tickets={tickets} />
       <TicketsOwned />
     </div>

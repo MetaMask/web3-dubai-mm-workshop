@@ -10,17 +10,19 @@ export const FlexContainer = styled.div`
 `;
 
 export const FlexItem = styled.div`
-  flex-grow: 1;
+  width: ${props => props.widthPercent || 50}%;
 `;
 
 export const Button = styled.div`
   border-radius: 4px;
   background-color: #103164;
   color: #FFF;
+  font-size: ${props => props.textSize || 16}px;
+  text-transform: uppercase;
   padding: 1em 0.75em;
   cursor: pointer;
   display: inline-block;
-  margin: 5px;
+  margin: 0 1em 0 0;
   cursor: pointer;
   &:hover {
     background-color: #295496;
