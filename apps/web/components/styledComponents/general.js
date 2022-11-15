@@ -25,6 +25,7 @@ export const Button = styled.button`
   margin: 0 1em 0 0;
   cursor: pointer;
   cursor: hand;
+  user-select: none;
   &:hover {
     background-color: #244982;
   }

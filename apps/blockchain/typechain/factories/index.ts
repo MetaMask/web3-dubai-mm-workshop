@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export { ETHTickets__factory } from "./ETHTickets__factory";
-export { Hello__factory } from "./Hello__factory";

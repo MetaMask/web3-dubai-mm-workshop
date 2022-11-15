@@ -24,9 +24,7 @@ const TicketDetails = ({ ticket }: TicketProps) => {
   const [isMinting, setIsMinting] = useState(false)
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
-  // const { user, nfTickets, chainId } = useContext(ViewContext)
-  const address = '0xC66450E959dbfA945B4D5C287A8Fa185F3610CDD'
-
+  
   const mintTicket = async () => {
     console.log("minting start")
     setIsMinting(true)

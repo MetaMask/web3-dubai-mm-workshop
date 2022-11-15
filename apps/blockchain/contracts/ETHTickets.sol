@@ -17,7 +17,7 @@ contract ETHTickets is ERC721Enumerable, Ownable {
   uint16 _myTotalSupply = 0; // max value 65,535
   address _owner;
 
-  uint16 public MAX_SUPPLY = 4; // max value 65,535
+  uint16 public MAX_SUPPLY = 8999; // max value 65,535
   uint256 public constant vipTicketPrice = 20000000000000000; // 0.02 ETH
   uint256 public constant gaTicketPrice = 10000000000000000; // 0.01 ETH
 

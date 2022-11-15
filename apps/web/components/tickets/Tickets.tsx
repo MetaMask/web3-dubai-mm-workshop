@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { SiEthereum } from 'react-icons/si';
 
 import { Button, FlexContainer, FlexItem, } from "../styledComponents/general";
-import { TicketsView, TicketType, TicketTypeText } from "../styledComponents/tickets";
+import { TicketsView, TicketType, TicketTypeText, StyledAlert, AlertMessage } from "../styledComponents/tickets";
 
 interface Ticket {
   type: string;
@@ -22,16 +22,11 @@ interface TicketsProps {
 }
 
 const TicketCategoryDetail: React.FC<Ticket> = ({
-  type,
-  event,
-  description,
-  price,
-  priceHexValue,
+  type, event, description, price, priceHexValue,
 }) => {
-  const {
-    state: { wallet },
-  } = useMetaMask();
-  const { reload } = useRouter();
+
+  const { state: { wallet }, } = useMetaMask();
+  const router = useRouter();
   const [isMinting, setIsMinting] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -54,6 +49,7 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
         await tx.wait();
         console.log(`Minting complete, mined: ${tx}`);
         setIsMinting(false);
+        router.reload();
       })
       .catch((error: any) => {
         console.error(error);
@@ -61,14 +57,24 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
         setErrorMessage(error?.message);
         setIsMinting(false);
       })
-      .finally(reload);
   };
   return (
     <FlexItem>
       <TicketType>
         <TicketTypeText>{event}</TicketTypeText>
         <p>{description}</p>
-        <Button onClick={mintTicket} disabled={isMinting}><SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket</Button>
+        <Button disabled={isMinting} onClick={mintTicket}>
+          <SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket
+        </Button>
+        {
+          error && (
+            <StyledAlert onClick={() => setError(false)}>
+              <span>
+                <strong>Error:</strong> {errorMessage}
+              </span>
+            </StyledAlert>
+          )
+        }
       </TicketType>
     </FlexItem>
   );
