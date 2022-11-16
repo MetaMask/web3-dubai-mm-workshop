@@ -57,7 +57,7 @@ const TicketsOwned = () => {
 
   return (
     <>
-      <hr height="1" />
+      <hr />
       <Grid columns={3} itemWidth={300} columnWidth={308}>{listOfTickets}</Grid>
     </>
   );
