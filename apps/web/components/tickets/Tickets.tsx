@@ -21,7 +21,7 @@ interface TicketsProps {
   tickets: Ticket[];
 }
 
-const TicketCategoryDetail: React.FC<Ticket> = ({
+const TicketTypes: React.FC<Ticket> = ({
   type, event, description, price, priceHexValue,
 }) => {
 
@@ -66,8 +66,8 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
   return (
     <FlexItem>
       <TicketType>
-        <TicketTypeText>{event}</TicketTypeText>
-        <p>{description}</p>
+        <TicketTypeText>{description}</TicketTypeText>
+        <p>{event}</p>
         <Button disabled={isMinting} onClick={mintTicket}>
           <SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket
         </Button>
@@ -91,7 +91,7 @@ const Tickets = ({ tickets }: TicketsProps) => {
       <h1>Ticket Types</h1>
       <FlexContainer gap={1}>
         {tickets.map((ticket) => (
-          <TicketCategoryDetail key={ticket.type} {...ticket} />
+          <TicketTypes key={ticket.type} {...ticket} />
         ))}
       </FlexContainer>
     </TicketsView>
