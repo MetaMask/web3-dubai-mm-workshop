@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { SiEthereum } from 'react-icons/si';
 
 import { Button, FlexContainer, FlexItem, } from "../styledComponents/general";
-import { TicketsView, TicketType, TicketTypeText, StyledAlert, AlertMessage } from "../styledComponents/tickets";
+import { TicketsView, TicketType, TicketTypeText, StyledAlert } from "../styledComponents/tickets";
 
 interface Ticket {
   type: string;
