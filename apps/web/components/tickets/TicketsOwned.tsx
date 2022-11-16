@@ -8,8 +8,24 @@ import { useMetaMask } from "../../hooks/useMetaMask";
 
 import { Grid, SvgItem } from "../styledComponents/ticketsOwned";
 
+type NftData = {
+  name: string,
+  description: string
+  attributes: { trait_type: any, value: any }[],
+  owner: string
+  image: string
+}
+
+type TicketFormated = {
+  tokenId: string
+  svgImage: string
+  ticketType:
+  { trait_type: any, value: any }
+
+}
+
 const TicketsOwned = () => {
-  const [ticketCollection, setTicketCollection] = useState([]);
+  const [ticketCollection, setTicketCollection] = useState<TicketFormated[]>([]);
   const { state: { wallet: address }, } = useMetaMask();
 
   useEffect(() => {
@@ -20,24 +36,25 @@ const TicketsOwned = () => {
       const factory = new ETHTickets__factory(signer);
       const nftTickets = factory.attach(config.contractAddress);
 
-      const ticketsRetrieved = [];
+      const ticketsRetrieved: TicketFormated[] = [];
 
       nftTickets.walletOfOwner(address).then((ownedTickets) => {
         const promises = ownedTickets.map(async (t) => {
           const currentTokenId = t.toString();
-          let currentTicket = await nftTickets.tokenURI(currentTokenId);
-          let base64ToString = window.atob(
+          const currentTicket = await nftTickets.tokenURI(currentTokenId);
+
+          const base64ToString = window.atob(
             currentTicket.replace("data:application/json;base64,", "")
           );
-          base64ToString = JSON.parse(base64ToString);
+          const nftData: NftData = JSON.parse(base64ToString);
 
           ticketsRetrieved.push({
             tokenId: currentTokenId,
-            svgImage: base64ToString.image,
-            ticketType: base64ToString.attributes.find(
-              (x) => x.trait_type === "Ticket Type"
+            svgImage: nftData.image,
+            ticketType: nftData.attributes.find(
+              (t) => t.trait_type === "Ticket Type"
             ),
-          });
+          } as TicketFormated);
         });
         Promise.all(promises).then(() => setTicketCollection(ticketsRetrieved));
       });
@@ -46,10 +63,10 @@ const TicketsOwned = () => {
 
   let listOfTickets = ticketCollection.map((ticket) => (
     <SvgItem pad={4} key={`ticket${ticket.tokenId}`}>
-      <Image 
-        width={300} 
+      <Image
+        width={300}
         height={300}
-        src={ticket.svgImage} 
+        src={ticket.svgImage}
         alt={`Ticket# ${ticket.tokenId}`}
       />
     </SvgItem>

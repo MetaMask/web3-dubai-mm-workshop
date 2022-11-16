@@ -36,9 +36,9 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // In ethers.js, providers allow you to query data from the blockchain. 
-    // They represent the way you connect to the blockchain. With them you can only call view methods on contracts and get data from those contract.
-    // Signers are backed by providers and have access to an ethereum account. 
-    // Therefore, they can sign transactions that modify the state of the blockchain by storing or changing information.
+    // They represent the way you connect to the blockchain. 
+    // With them you can only call view methods on contracts and get data from those contract.
+    // Signers are authenticated providers conected to the current address in MetaMask.
     const signer = provider.getSigner();
 
     const factory = new ETHTickets__factory(signer);
@@ -50,13 +50,14 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
         value: priceHexValue,
       })
       .then(async (tx: any) => {
-        await tx.wait();
+        console.log('minting accepted')
+        await tx.wait(1);
         console.log(`Minting complete, mined: ${tx}`);
         setIsMinting(false);
-        router.reload();
+        router.replace(router.asPath)
       })
       .catch((error: any) => {
-        console.error(error);
+        console.log(error);
         setError(true);
         setErrorMessage(error?.message);
         setIsMinting(false);
@@ -66,7 +67,7 @@ const TicketCategoryDetail: React.FC<Ticket> = ({
     <FlexItem>
       <TicketType>
         <TicketTypeText>{event}</TicketTypeText>
-        <p>{description} ({price} ETH)</p>
+        <p>{description}</p>
         <Button disabled={isMinting} onClick={mintTicket}>
           <SiEthereum /> {isMinting ? 'Minting...' : 'Mint'} Ticket
         </Button>
