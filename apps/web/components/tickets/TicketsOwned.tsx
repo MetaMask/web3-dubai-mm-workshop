@@ -10,19 +10,18 @@ import { Grid, SvgItem } from "../styledComponents/ticketsOwned";
 
 type NftData = {
   name: string,
-  description: string
+  description: string,
   attributes: { trait_type: any, value: any }[],
-  owner: string
-  image: string
-}
+  owner: string,
+  image: string,
+};
 
 type TicketFormated = {
-  tokenId: string
-  svgImage: string
+  tokenId: string,
+  svgImage: string,
   ticketType:
-  { trait_type: any, value: any }
-
-}
+  { trait_type: any, value: any },
+};
 
 const TicketsOwned = () => {
   const [ticketCollection, setTicketCollection] = useState<TicketFormated[]>([]);
