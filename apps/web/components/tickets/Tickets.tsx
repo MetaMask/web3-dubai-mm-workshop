@@ -52,7 +52,7 @@ const TicketTypes: React.FC<Ticket> = ({
       .then(async (tx: any) => {
         console.log('minting accepted')
         await tx.wait(1);
-        console.log(`Minting complete, mined: ${tx}`);
+        console.log(`Minting complete, mined: ${tx.hash}`);
         setIsMinting(false);
         router.reload()
       })
