@@ -4,7 +4,7 @@
 - NodeJS & NPM
 - Code Editor
 - Git & GitHub account 
-- [MetaMask Extension](https://metamask.io/download)Installed
+- [MetaMask Extension](https://metamask.io/download) Installed
 - Knowledge of JavaScript, TypeScript and React (is a plus)
 - Eagerness to learn NextJS, Solidity smart contracts, Truffle and Ganache
 
