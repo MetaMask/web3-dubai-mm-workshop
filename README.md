@@ -8,6 +8,12 @@
 - Knowledge of JavaScript, TypeScript and React (is a plus)
 - Eagerness to learn NextJS, Solidity smart contracts, Truffle and Ganache
 
+To install Truffle and Ganache run: 
+
+```bash
+npm i truffle ganache -g
+```
+
 ## Getting Started
 
 Welcome to the Web3 Dubai Metamask Workshop, to get started, please clone the workshop repo on your machine and checkout the start branch:
