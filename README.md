@@ -5,7 +5,7 @@
 - Code Editor
 - Git & GitHub account 
 - [MetaMask Extension](https://metamask.io/download) Installed
-- Knowledge of JavaScript, TypeScript and React (is a plus)
+- Knowledge of JavaScript, TypeScript, and React (is a plus)
 - Eagerness to learn NextJS, Solidity smart contracts, Truffle and Ganache
 
 ```bash
@@ -14,7 +14,7 @@ npm i truffle ganache -g
 
 ## Getting Started
 
-Welcome to the Web3 Dubai Metamask Workshop, to get started, please clone the workshop repo on your machine and checkout the start branch:
+Welcome to the Web3 Dubai Metamask Workshop. To get started, please clone the workshop repo on your machine and checkout the start branch:
 
 ```bash
 git clone https://github.com/metamask/web3-dubai-mm-workshop && 
@@ -22,27 +22,27 @@ cd web3-dubai-mm-workshop &&
 git checkout start && npm i
 ```
 
-With our repo cloned and our dependencies installed we should take minute to discuss our choices for the decisions and architecture of this web3 project.
+With our repo cloned and our dependencies installed, we should discuss our choices for the decisions and architecture of this web3 project.
 
 - A mono repo using [Turbo](https://turbo.build/) 
     - Incremental bundler/build system optimized for mono repos, JS & TS
-- Seperating our `blockchain` and `web` projects
+- Separating our `blockchain` and `web` projects
 - [React](https://beta.reactjs.org) & [NextJS](https://nextjs.org/)
 - [Truffle](https://trufflesuite.com) & [Ganache](https://trufflesuite.com/ganache/)
 
-At this point, we have a pretty solid framework to build Web3 applications with, is it a bit opinionated, yes, is it different? I would say that if you are a web2 developer just getting started with Web3 these tools should feel familliar, we are using ReactJS, JS & TS and we have at the least dropped you off at the doorstep of a pretty solid way to build a fullstack web3 application all in one repo.
+At this point, we have a solid framework to build Web3 applications. I would say that if you are a web2 developer just getting started with Web3 these tools should feel familiar, we are using ReactJS, JS, TS, and we have at the least dropped you off at the doorstep of a pretty solid way to build a full-stack web3 application all in one repo.
 
 ## Run Our NextJS Project
 
-Let's really quickly just ensure that our frontend NextJS project is running in dev mode. In a new terminal window:
+Let's ensure that our frontend NextJS project runs in dev mode. In a new terminal window run:
 
 ```bash
 cd apps/web && npm run dev
 ```
 
-If everything is working you should see text that says "Let's get started". For now we can exit out of `next dev` and know that our NextJS frontend is ready when we need it.
+If everything is working, you should see text that says, "Let's get started". For now, we can exit out of `next dev` and know that our NextJS frontend is ready when we need it.
 
-If that is working fine we can back up out of that directory because the next time we run the NextJS app it will be from the root with our turbo scripts.
+If that is working fine, we can back up out of that directory because the next time we run the NextJS app, it will be from the root with our turbo scripts.
 
 ```bash
 cd ../..
@@ -50,32 +50,32 @@ cd ../..
 
 ## Reviewing our Blockchain App
 
-Rather than spend hours creating our Smart contract for our NFT Tickets, we have provided that for you in this `start` branch and together we will go over it for the sake of time.
+Rather than spend hours creating our Smart contract for our NFT Tickets, we have provided that for you in this `start` branch, and together we will go over it for the sake of time.
 
-Review in workshop each file: 
+Review each in workshop: 
 - `ETHTickets.sol`
 - `HexStrings.sol`
 - `1_initial_migration.js`
 
 ## Building and Running our Project
 
-Let's first get our local blockchain environment up and running, we have several npm scripts setup to help us build and run our project locally. 
+Let's first get our local blockchain environment up and running; we have several npm scripts to help us build and run our project locally. 
 
-let's build our contracts and generate types that we can use in our NextJS app.
+Let's build our contracts and generate types we can use in our NextJS app.
 
-From the root for the project run:
+From the root of the project run:
 
 ```bash
 npm run build
 ```
 
-For running a local instance of Truffle and Ganache to generate accounts, private keys for use in testing our Web3 app let's open a seperate terminal and run:
+For running a local instance of Truffle and Ganache to generate accounts, and private keys for use in testing our Web3 app, let's open a separate terminal and run:
 
 ```bash
 npm run local
 ```
 
-This will give us some private keys and we can take one of those private keys and import into our MetaMask using the following network information:
+The output from this command will give us some private keys, and we can take one of those private keys and import it into our MetaMask using the following network information:
 
 - Network Name: Localhost 9545
 - New RPC URL: http://localhost:9545
@@ -83,24 +83,22 @@ This will give us some private keys and we can take one of those private keys an
 - Currency Symbol: ETH
 - Block explorer URL: we can leave this blank
 
-For our Frontent we can open one more terminal window and run:
+For our Front-end we can open one more terminal window and run:
 
 ```bash
 npm run dev
 ```
 
 **Important**
-We need to pay attention to the output of this command and anytime we rerun this command we will need to get the `contract address` and copy it into the `apps/web/lib/config` file.
+We need to pay attention to the output of this command, and anytime we rerun this command, we will need to get the `contract address` and copy it into the `apps/web/lib/config` file.
 
-All of the work from here will be done in our `apps/web` directory, I should not that all of the dependencies we will be relying on have already been installed:
-
-If needed we can go over those dependencies in the workshop if anyone has any questions, from here we will (together) build the frontend out piece by piece and build everything required to not only connect users via MetaMask to our app, but also do that in a way that is scalable so that if the app were to expand to multiple pages and routes, we would have a solid way to use the wallet state and connection ot the blockchain through that wallet on any page in our dApp.
+All of the work, from this point, will be done in our `apps/web` directory. All dependencies we will rely on have already been installed:
 
 ## Connecting Users to MetaMask
 
-We will first need to create a directory in `apps/web/components/styledComponents` and this is where I will give you some basic styling for our navigation and some general styling we could use throughout our application.
+We will first need to create a directory in `apps/web/components/` named `styledComponents` for styling our individual components and more general styles we could reuse throughout our application, like buttons, etc.
 
-Create: `navigation.js` with the following code:
+Inside the `styledComponents` directory we just created, we need a file named `navigation.js` with the following code:
 
 ```js
 import styled from 'styled-components';
@@ -174,7 +172,7 @@ export const Button = styled.button`
 `
 ```
 
-We first need to add a Navigation component and styles, in the `apps/web/components` directory create a page called `Navigation.tsx` and add the following code:
+We first need to add a Navigation component and styles in the `apps/web/components` directory, create a page called `Navigation.tsx`, and add the following code:
 
 ```typescript
 import Link from "next/link";
@@ -204,9 +202,9 @@ export default function Navigation() {
 }
 ```
 
-With the Styles and basic navigation skeleton in place we need to update our `pages/index.tsx` inside of our web app.
+With the Styles and basic navigation skeleton in place, we need to update our `pages/index.tsx` inside our web app.
 
-Update `pages/index.tsx` and replace the `<div>Lets get started</div>` with a link to the Navigation component:
+Update `pages/index.tsx` and replace the `<div>Let's get started</div>` with a link to the Navigation component:
 
 ```typescript
 import type { NextPage } from "next";
@@ -231,9 +229,9 @@ const Mint: NextPage = () => {
 export default Mint;
 ```
 
-We should see our navigation in the top right corner. We need to replace that text that says "MM CONNECT BUTTON". But first we need to set up two React hooks to listen and provide context for our connected user. Create a new directory in th web app under `apps/web/hooks` and add the two files and we will go over them:
+We should see our navigation in the top right corner. We need to replace the text that says "MM CONNECT BUTTON". But first, we need to set up two React hooks to listen and provide context for our connected user. Create a new directory in the web app under `apps/web/hooks` and add the two files and we will go over them:
 
-Add a file named `useListen.tsx` with the follwoing code:
+Add a file named `useListen.tsx` with the following code:
 
 ```typescript
 import { useMetaMask } from "./useMetaMask";
@@ -264,7 +262,7 @@ export const useListen = () => {
 };
 ```
 
-Add a file named `useMetaMask.tsx` with the follwoing code:
+Add a file named `useMetaMask.tsx` with the following code:
 
 ```typescript
 import React, { type PropsWithChildren } from "react";
@@ -365,13 +363,13 @@ function useMetaMask() {
 export { MetaMaskProvider, useMetaMask };
 ```
 
-These files respectively listen for changes in the users connection to Metamask and set up a context provider for sharing the wallet state to the components in our app and we can go over each one in the workshop to give more explanation.
+These files respectively listen for changes in the user's connection to Metamask and set up a context provider for sharing the wallet state to the components in our app and we can go over each one in the workshop to give more explanation.
 
-With those files in place we wire up our connect, disconnect and display some basic balance information from our connected user.
+With those files in place, we wire up our connect, disconnect, and display basic balance information from our connected user.
 
-Let's go back to our Naviagtion component and update it to import these hooks and get everything working:
+Let's go back to our Navigation component and update it to import these hooks and get everything working:
 
-In the `Navigation.tsx` file update to the following code:
+In the `Navigation.tsx` file, update to the following code:
 
 ```typescript
 import Link from "next/link";
@@ -409,7 +407,7 @@ export default function Navigation() {
       });
       dispatch({ type: "connect", wallet: accounts[0], balance });
 
-      // we can register an event listener for changes to the users wallet
+      // we can register an event listener for changes to the user's wallet
       listen();
     }
   };
@@ -465,9 +463,9 @@ export default function Navigation() {
 }
 ```
 
-We will go over our changes in the workshop and cover what all of this achieves for us.
+We will review our changes in the workshop and cover what all of this achieves.
 
-At this point we are getting an error because we ave not wrapped the app with a provider, let's go to the `apps/web/pages/_app.tsx` file and add our MetaMask provider.
+At this point, we are getting an error because we have not wrapped the app with a provider; let's go to the `apps/web/pages/_app.tsx` file and add our MetaMask provider.
 
 In `_app.tsx` update the code to the following:
 
@@ -492,7 +490,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp;
 ```
 
-We need to make two more changes, one to our `apps/web/components/Layout.tsx` as this code will determine `isMetaMaskInstalled` if the ethereum provider exists or is undefined and dispatch the proper actions to our context's reducers. 
+We need to make two more changes, one to our `apps/web/components/Layout.tsx` as this code will determine `isMetaMaskInstalled` if the Ethereum provider exists or is undefined and dispatch the proper actions to our context's reducers. 
 
 In the `Layout.tsx` file update the code to the following: 
 
@@ -557,15 +555,15 @@ export const instantiateSdk = () => {
 };
 ```
 
-With all of this in place our connect, display and disconnect functionality should work. Let's run our app and try it out. We should now get the option to install if we don't have the MetaMask extension, connect if we do, display balance if we are connected as well as disconnect if we wish.
+With this in place, our connect, display, and disconnect functionality should work. Let's run our app and try it out. We should now get the option to install if we don't have the MetaMask extension, connect if we do, display balance if we are connected, and disconnect if we wish.
 
 ## Add Tickets and Minting
 
-Since our app is based mainly around showing the type of tickets available and giving the user the ability to mint those tickets, we will be adding components directly to the `apps/web/pages/index.ts` page.
+Since our app is based on showing the type of tickets available and allowing the user to mint those tickets, we will be adding components directly to the `apps/web/pages/index.ts` page.
 
-We will first add an array of objects that represent the types of tickets we want to allow users to mint along with their type (GA & VIP), Event Name, Price in ETH using both the actual and hex version of this price. Why both, we want to display the value as well we need the hex value to send to our contract.
+We will first add an array of objects that represent the types of tickets we want to allow users to mint along with their kind (GA & VIP), Event Name, and Price in ETH using both the basic and hex version of this price. Why both, we want to display the value as well we need the hex value to send to our contract.
 
-On the `index.tx` page. lets import the `ethers` (a library for interacting with Ethereum) import just above the Navigation import:
+On the `index.tx` page. Lets import the `ethers` (a library for interacting with Ethereum) import just above the Navigation import:
 
 ```typescript
 import { ethers } from "ethers";
@@ -577,7 +575,7 @@ import Navigation from '../components/Navigation';
 Next, just under the Mint component declaration add the following code (at line number 8):
 
 ```typescript
-  // Get ETH as small number ("0.01" => "10000000000000000")
+  // Get ETH as a small number ("0.01" => "10000000000000000")
   const bigNumberify = (amt: string) => ethers.utils.parseEther(amt);
 
   const ethGa = "0.01";
@@ -602,7 +600,7 @@ Next, just under the Mint component declaration add the following code (at line 
   ];
 ```
 
-Finally, we will add the actual `<TIcket/>` component and pass this tickets array to it, just underneath the `<Navigation/>` component add the following code and until we get that page working we can just comment it out: 
+Finally, we will add the actual `<Ticket/>` component and pass this tickets array to it, just underneath the `<Navigation/>` component, add the following code, and until we get that page working, we can just comment it out: 
 
 ```typescript
       <Tickets tickets={tickets} />
@@ -675,9 +673,9 @@ const Tickets = ({ tickets }: TicketsProps) => {
 export default Tickets;
 ```
 
-With this in place we need to add the styled components for the Tickets page which I have already created and will help to render our page with some style.
+With this in place, we need to add the styled components for the Tickets page, which I have already created and will help to render our page with some style.
 
-In the `apps/web/components/styledComponents` directory create a page called `tickets.js` and add the following code:
+In the `apps/web/components/styledComponents` directory, create a page called `tickets.js` and add the following code:
 
 ```js
 import styled from 'styled-components';
@@ -723,13 +721,13 @@ export const StyledAlert = styled.div`
 `
 ```
 
-With all of this in place we should see our ticket types show up with minting buttons (that do not work yet) on the page if we navigate to our app on `localhost:3000`.
+With all of this in place, we should see our ticket types show up with minting buttons (that do not work yet) on the page if we navigate to our app on `localhost:3000`.
 
-## Adding Minting Functionality to TicketCategoryDetail Component
+## Adding Minting Functionality to TicketType Component
 
-With our ticket types in place, we are ready to sell out our event to ETH Atlantis. We need to add some additional code to our `Tickets.tsx` page which will allow us to interact with our smart contract. If for any reasons you have killed your `npm run local` or `npm run dev` processes in the terminal now is a time to get those running and ensure your `config.ts` file has the right contract address added.
+With our ticket types in place, we are ready to sell out our event to ETH Atlantis. We need to add some additional code to our `Tickets.tsx` page, allowing us to interact with our smart contract. If, for any reason, you have killed your `npm run local` or `npm run dev` processes in the terminal now is a time to get those running and ensure your `config.ts` file has the correct contract address added.
 
-When we are done with this next section we should be able to call our contract's `mintNFT` function and get some initial feedback indicating our minting process is working in our dApp.
+When we are done with this next section, we should be able to call our contract's `mintNFT` function and get some initial feedback indicating our minting process is working in our dApp.
 
 In the `Tickets.tsx` page, we need to add a few more imports directly above the existing imports we have already added:
 
